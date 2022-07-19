@@ -1,13 +1,9 @@
 <template>
-   <Swipe class="swipe"></Swipe>
+   <div class="song">听歌识曲功能，未完成</div>
 </template>
 
 <script setup>
 import { defineComponent, reactive, toRefs } from 'vue'
-import Swipe from '@/components/home/find/swipe.vue'
 </script>
 <style lang='scss' scoped>
-.swipe{
-   margin-top: 20px;
-}
 </style>

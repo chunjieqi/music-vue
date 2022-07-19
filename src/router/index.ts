@@ -5,6 +5,7 @@ import Find from "@/views/find/Find.vue";
 import My from "@/views/my/My.vue";
 import Care from "@/views/care/Care.vue";
 import CloudVil from "@/views/cloudVil/CloudVil.vue";
+import Song from "@/views/song/song.vue";
 const routes: Array<RouteRecordRaw> = [
   { path: "/", redirect: "/home" },
   {
@@ -19,6 +20,7 @@ const routes: Array<RouteRecordRaw> = [
       { path: "cloudVil", component: CloudVil },
     ],
   },
+  {path:'/song',component:Song}
 ];
 
 const router = createRouter({
