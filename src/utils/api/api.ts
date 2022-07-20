@@ -14,3 +14,12 @@ export function getSwipelist(){
 
     })
 }
+
+//获取轮播图资源
+export function getFindIconlist(){
+    return service({
+        url:'/homepage/dragon/ball',
+        method:'get',
+
+    })
+}
