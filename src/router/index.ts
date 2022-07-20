@@ -6,6 +6,7 @@ import My from "@/views/my/My.vue";
 import Care from "@/views/care/Care.vue";
 import CloudVil from "@/views/cloudVil/CloudVil.vue";
 import Song from "@/views/song/song.vue";
+import Playmusic from "@/views/playmusic/playmusic.vue";
 const routes: Array<RouteRecordRaw> = [
   { path: "/", redirect: "/home" },
   {
@@ -20,7 +21,8 @@ const routes: Array<RouteRecordRaw> = [
       { path: "cloudVil", component: CloudVil },
     ],
   },
-  {path:'/song',component:Song}
+  {path:'/song',component:Song},
+  {path:'/playmusic',component:Playmusic},
 ];
 
 const router = createRouter({

@@ -49,6 +49,7 @@ getsuglist()
 <style lang='scss' scoped>
 .sugSonglist {
     display: flex;
+    margin: auto;
     width: 100%;
     justify-content: center;
 }
