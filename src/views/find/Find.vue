@@ -2,19 +2,21 @@
    <Swipe class="swipe"></Swipe>
    <cicleIcon class="cicleIcon"></cicleIcon>
    <van-divider />
+   <sugSongist></sugSongist>
 </template>
 
 <script setup>
 import { defineComponent, reactive, toRefs } from 'vue'
 import Swipe from '@/components/home/find/swipe.vue'
 import cicleIcon from '@/components/home/find/cicleIcon.vue'
+import sugSongist from '@/components/home/find/sugSongist.vue'
 </script>
 <style lang='scss' scoped>
-.swipe{
+.swipe {
    margin-top: 20px;
 }
-.cicleIcon{
+
+.cicleIcon {
    margin-top: 10px;
 }
-
 </style>

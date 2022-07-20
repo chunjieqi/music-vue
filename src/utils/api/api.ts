@@ -23,3 +23,11 @@ export function getFindIconlist(){
 
     })
 }
+
+export function getSuglist(){
+    return service({
+        url:'/recommend/resource',
+        method:'get',
+
+    })
+}

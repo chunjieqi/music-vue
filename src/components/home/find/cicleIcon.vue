@@ -1,6 +1,6 @@
 <template>
     <div class="cicleIcon">
-        <van-swipe :loop="false" :width="70" :show-indicators="false">
+        <van-swipe :loop="false" class="myswipe" :width="70" :show-indicators="false">
             <van-swipe-item v-for="(item, index) in iconList" :key="index" class="box">
                 <div class="smallBox">
 
@@ -11,6 +11,7 @@
             </van-swipe-item>
 
         </van-swipe>
+
     </div>
 </template>
 
@@ -67,5 +68,14 @@ getFindIcon()
     margin-top: 5px;
 }
 
-.cicleIcon {}
+.cicleIcon {
+    width: 96%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.myswipe {
+    width: 100%;
+}
 </style>
