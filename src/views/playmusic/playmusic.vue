@@ -11,7 +11,18 @@
             </div>
         </div>
         <div class="bottom">
-            <audio src="./source/audio.mp3" controls autoplay loop></audio>
+
+            <div class="opption">
+                <van-icon name="like-o" />
+                <van-icon name="down" />
+                <van-icon name="music-o" />
+                <van-icon name="comment-circle-o" />
+                <van-icon name="ellipsis" />
+            </div>
+            <div class="aud">
+                <audio src=" https://music.163.com/song/media/outer/url?id=33894312.mp3" controls autoplay loop></audio>
+            </div>
+
         </div>
     </div>
 </template>
@@ -85,5 +96,27 @@ function back() {
 .aud {
     width: 200px;
     height: 200px;
+}
+
+.bottom {
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-top: 100px;
+}
+
+.opption {
+    width: 80%;
+    display: flex;
+    justify-content: space-around;
+    font-size: 150%;
+}
+.aud{
+    width: 100%;
+    display: flex;
+    margin-top: 20px;
+    justify-content: center;
 }
 </style>
