@@ -7,7 +7,7 @@
         </div>
         <div class="contenter">
             <div class="bigbox">
-                这里放图片
+                {{store.songname}}
             </div>
         </div>
         <div class="bottom">
@@ -20,7 +20,7 @@
                 <van-icon name="ellipsis" />
             </div>
             <div class="aud">
-                <audio src=" https://music.163.com/song/media/outer/url?id=33894312.mp3" controls autoplay loop></audio>
+                <audio :src=store.nowsong[0].url controls  ></audio>
             </div>
 
         </div>
@@ -30,6 +30,8 @@
 <script setup>
 import router from '@/router'
 import { defineComponent, reactive, toRefs } from 'vue'
+import {songStore} from '@/store/song'
+const store=songStore()
 function back() {
     router.push('/home')
 }

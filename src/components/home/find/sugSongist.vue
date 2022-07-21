@@ -9,14 +9,13 @@
             </div>
             <div class="songList">
                 <van-swipe :loop="false" :width="160" class="fff" :show-indicators="false">
-                    <van-swipe-item v-for="(item, index) in suglist" :key="index" class="myswipe">
-                        <img :src="item.picUrl" alt="" class="imgg">
+                    <van-swipe-item v-for="(item, index) in suglist" :key="index" class="myswipe" @click="goList(item.id)">
+                        <img :src="item.coverImgUrl" alt="" class="imgg">
                         <div class="tit">{{ item.name }}</div>
                         <div class="count">
-                            <van-icon name="play-circle-o" />{{ item.playcount }}
+                            <van-icon name="play-circle-o" />{{ item.playCount }}
                         </div>
                     </van-swipe-item>
-
                 </van-swipe>
             </div>
         </div>
@@ -25,26 +24,48 @@
 
 <script setup>
 import { defineComponent, reactive, toRefs, ref } from 'vue'
-import { getSuglist } from '@/utils/api/api'
+import {getSuglist,getSonglist} from '@/utils/api/api'
+// import store from '@/store';
+//引入pinia store
+import {songStore} from '@/store/song'
+import router from '@/router'
+//创建store实例
+const store=songStore()
+// console.log(store);
 let suglist = ref([])
 //获取推荐歌单 
 function getsuglist() {
-
     getSuglist().then(res => {
         console.log(res);
-        suglist.value = res.recommend
+        suglist.value = res.playlists
         //对播放量进行处理
         suglist.value.forEach(item => {
-            if (item.playcount <= 10000) {
-                item.playcount = item.playcount + ''
+            if (item.playCount <= 10000) {
+                item.playCount = item.playCount + ''
             }
             else {
-                item.playcount = parseInt(item.playcount / 10000) + '万'
+                item.playCount = parseInt(item.playCount / 10000) + '万'
             }
         });
     })
 }
 getsuglist()
+// 获取并去往歌单页面
+function goList(id){
+    //根据id获取歌单数组
+    getSonglist(id).then(res=>{
+        console.log(res);
+        // store.commit('song/getSonglist',res.songs)
+        // store.songList=res.songs
+        
+        store.addlist(res.songs)  //改变歌单列表的值
+        router.push('/songlist')   //跳转到歌单页面
+        // console.log(store.songList);
+        store.playsong(store.songList[0].id,store.songList[0].name)                            //按照歌单播放
+    })
+    
+    // store.commit('song/getSonglist(id)')
+}
 </script>
 <style lang='scss' scoped>
 .sugSonglist {

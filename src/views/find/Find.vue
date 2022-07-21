@@ -4,6 +4,7 @@
    <van-divider />
    <sugSongist></sugSongist>
    <button @click="quba">点击去往播放歌曲页面</button>
+   <button @click="qugedan">点击去往播放歌单详情页面</button>
    <!-- 实验： -->
    <!-- {{store.state.song.count}}
    <button @click="fian">+</button> -->
@@ -16,10 +17,12 @@ import Swipe from '@/components/home/find/swipe.vue'
 import cicleIcon from '@/components/home/find/cicleIcon.vue'
 import sugSongist from '@/components/home/find/sugSongist.vue'
 import router from '@/router'
-import { Store } from 'vuex'
-import store from '@/store'
+// import store from '@/store'
 function quba(){
    router.push('/playmusic')
+}
+function qugedan(){
+   router.push('/songlist')
 }
 // function fian(){
 //    console.log(store.state.song.count)
