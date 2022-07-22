@@ -23,8 +23,11 @@ export function getFindIconlist() {
 
 export function getSuglist() {
   return service({
-    url: "/top/playlist/highquality?limit=9",
+    url: "/personalized",
     method: "get",
+    params:{
+      limit:9
+    }
   });
 }
 

@@ -1,7 +1,7 @@
 <template>
     <div class="swipe">
         <van-swipe :autoplay="3000" lazy-render class="swi">
-            <van-swipe-item v-for="(item, index) in bandata" :key="index">
+            <van-swipe-item v-for="(item, index) in bandata" :key="index" @click="goList(item)">
                 <img class="swi" :src="item.pic" style="width: 100%;height: 100%;" />
             </van-swipe-item>
         </van-swipe>
@@ -19,6 +19,9 @@ function getBanner() {
     })
 }
 getBanner()
+function goList(item){
+    console.log(item);
+}
 </script>
 <style lang='scss' scoped>
 .swipe {
