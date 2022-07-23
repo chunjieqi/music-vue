@@ -6,6 +6,7 @@ import { songStore } from '@/store/song'
 const store = songStore()
 function watchEnd() {
   store.playEnd()
+  store.changeProgress()
 }
 watchEnd()
 </script>

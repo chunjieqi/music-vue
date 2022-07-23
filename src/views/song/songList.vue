@@ -7,6 +7,7 @@
             <div class="mus" v-for="(item, index) in store.songList" :key="index" @click="select(item)">
                 <span class="num">{{ index + 1 }}</span>
                 <span class="nam">{{ item.name }}</span>
+                
             </div>
         </div>
     </div>

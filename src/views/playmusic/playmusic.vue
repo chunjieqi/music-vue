@@ -11,7 +11,6 @@
             </div>
         </div>
         <div class="bottom">
-
             <div class="opption">
                 <van-icon name="like-o" />
                 <van-icon name="down" />
@@ -22,11 +21,29 @@
             </div>
             <div class="aud">
                 <!-- <audio ref="audios" :src='store.nowsong[store.index].url' controls></audio> -->
-                <button @click="nowPlay">开始播放</button>
+                <!-- <button @click="nowPlay">开始播放</button> -->
+                <!-- 开始与暂停 -->
+                <div class="start" @click="nowPlay">
+                    <van-icon v-if="store.isplaying === true" name="pause-circle-o" />
+                    <van-icon v-else name="play-circle-o" />
+                </div>
+                <!-- 切换上一首下一首 -->
                 <div class="audbox">
                     <van-icon name="arrow-left" @click="shangyi" class="arror" />
                     <van-icon name="arrow" @click="nextone" class="arror" />
                 </div>
+                <!-- 进度条 -->
+                <div class="pro">
+                    <span>{{store.currenttime}}</span>
+                    <Pregress></Pregress>
+                    <span>{{store.duration}}</span>
+                </div>
+                <div style="width: 100%;"></div>
+                <!-- 控制音量 -->
+                <div class="audvim">
+                    <van-slider bar-height="4px" v-model="thisf" :min="0" :step="0.1" :max="1" active-color="#ee0a24" @change="chang"></van-slider>
+                </div>
+                
             </div>
         </div>
     </div>
@@ -40,7 +57,15 @@ import router from '@/router'
 import { defineComponent, reactive, toRefs, ref, onMounted } from 'vue'
 import { songStore } from '@/store/song'
 import songListShow from '@/components/songPlay/songListShow.vue'
+import Pregress from '@/components/songPlay/progress.vue'
 const store = songStore()
+//音量
+let thisf=ref(0)
+thisf.value=store.audios.volume
+function chang(){
+    console.log(thisf.value);
+    store.audios.volume=thisf.value
+}
 function back() {
     router.push('/home')
 }
@@ -152,5 +177,13 @@ function showlist() {
         justify-content: center;
         margin-top: 20px;
     }
+    .pro{
+        margin-top: 20px;
+    }
+    .audvim{
+    width: 40%;
+    margin-top: 20px;
 }
+}
+
 </style>

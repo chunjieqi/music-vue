@@ -9,6 +9,7 @@
                 <div class="ststebox">
                     <van-icon v-if="store.index === index" name="pause-circle-o" />
                     <van-icon v-else name="play-circle-o" />
+                    <van-icon name="clear" @click.stop="deletesong(index)" />
                 </div>
 
             </div>
@@ -25,6 +26,10 @@ function bofang(val) {
     store.audios.src = store.nowsong[store.index].url
     store.isplaying = false
     store.playMusic()
+}
+//删除
+function deletesong(val){
+    store.deleteSonglist(val)
 }
 </script>
 <style lang='scss' scoped>
