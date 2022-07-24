@@ -1,8 +1,11 @@
 <!-- 此路由组件指向整个含tabbar的页面，tabbar路由都是它的子路由 -->
 <template>
-   <navBar></navBar>
-   <router-view></router-view>
-   <footBar></footBar>
+   <div class="box">
+      <navBar></navBar>
+      <router-view></router-view>
+      <footBar></footBar>
+   </div>
+
 </template>
 
 <script setup>
@@ -16,4 +19,9 @@ import navBar from '@/components/navBar/navBar.vue'
 // })
 </script>
 <style lang='scss' scoped>
+.box {
+   width: 100%;
+   height: 100%;
+   padding-bottom: 50px;
+}
 </style>

@@ -5,6 +5,7 @@ export const songStore = defineStore("song", {
     return {
       //这里写数据 实例：
       audios: new Audio(), //播放器组件
+      muted: false,
       widthh: `0%`, //控制播放器进度条的宽度
       currenttime: 0, //当前时间
       duration: 0, //总时长
@@ -15,6 +16,7 @@ export const songStore = defineStore("song", {
           id: 0,
           url: "", //歌曲地址
           songname: "", //歌曲名字
+          picurl: "", //歌曲图片
         },
       ],
       isplaying: false, //歌曲是否在播放
@@ -31,6 +33,55 @@ export const songStore = defineStore("song", {
     getUserById: (state) => {
       return (userId: any) => userId;
     },
+    nowtime: (state) => {
+      if (isNaN(state.currenttime)) {
+        return "00:00";
+      }
+      let timeDisplay = Math.floor(state.currenttime); //获取实时时间
+      let minute = timeDisplay / 60;
+      let minutes = parseInt(minute + "");
+      let fen = "00";
+      let miao = "00";
+      if (minutes < 10) {
+        fen = "0" + minutes;
+      } else {
+        fen = minutes + "";
+      }
+      //秒
+      let second = timeDisplay % 60;
+      let seconds = Math.round(second);
+      if (seconds < 10) {
+        miao = "0" + seconds;
+      } else {
+        miao = seconds + "";
+      }
+      return fen + ":" + miao; //将实时时间存储到vuex中
+      // console.log(_this.$store.state.realMusicTime);
+    },
+    alltime: (state) => {
+      if (isNaN(state.duration)) {
+        return "00:00";
+      }
+      let timeDisplay = Math.floor(state.duration); //获取实时时间
+      let minute = timeDisplay / 60;
+      let minutes = parseInt(minute + "");
+      let fen = "00";
+      let miao = "00";
+      if (minutes < 10) {
+        fen = "0" + minutes;
+      } else {
+        fen = minutes + "";
+      }
+      //秒
+      let second = timeDisplay % 60;
+      let seconds = Math.round(second);
+      if (seconds < 10) {
+        miao = "0" + seconds;
+      } else {
+        miao = seconds + "";
+      }
+      return fen + ":" + miao;
+    },
   },
   actions: {
     //这里写方法，同步异步都可以,注意这个没有state参数，要访问state直接用this.
@@ -39,12 +90,14 @@ export const songStore = defineStore("song", {
       this.songList = val;
     },
     //根据传入的id获取歌单中的歌曲，并添加进nowsong中
-    playsong(id: number, name: string) {
+    playsong(id: number, name: string, pic: string) {
       getSong(id).then((res) => {
         //这段代码还有待改进
         console.log(res);
         if (this.nowsong[0].url === "") {
-          this.nowsong = [{ id: id, url: res.data[0].url, songname: name }]; //赋值给播放列表
+          this.nowsong = [
+            { id: id, url: res.data[0].url, songname: name, picurl: pic },
+          ]; //赋值给播放列表
           this.index = this.nowsong.length - 1; //让当前播放歌曲为列表的最后一项
           this.audios.src = this.nowsong[this.index].url; //为audio赋值
           this.audios.autoplay = false; //关闭自动播放
@@ -54,7 +107,12 @@ export const songStore = defineStore("song", {
         } else {
           //过滤掉重复的歌，重复的歌不添加但是切换到播放这首歌
           if (this.nowsong.filter((s) => s.id == id).length <= 0) {
-            this.nowsong.push({ id: id, url: res.data[0].url, songname: name });
+            this.nowsong.push({
+              id: id,
+              url: res.data[0].url,
+              songname: name,
+              picurl: pic,
+            });
             this.index = this.nowsong.length - 1;
             this.audios.src = this.nowsong[this.index].url; //为audio赋值
             this.audios.autoplay = false; //关闭自动播放
@@ -62,13 +120,12 @@ export const songStore = defineStore("song", {
             this.isplaying = false;
             console.log(this.nowsong);
             console.log("完成添加");
-          }
-          else{
-            const thisval=this.nowsong.findIndex((item)=>item.id===id)  //获取这首歌对应的索引
-            this.index=thisval                                            //播放歌曲操作
-            this.audios.src=this.nowsong[this.index].url              
-            this.isplaying=false
-            this.playMusic()
+          } else {
+            const thisval = this.nowsong.findIndex((item) => item.id === id); //获取这首歌对应的索引
+            this.index = thisval; //播放歌曲操作
+            this.audios.src = this.nowsong[this.index].url;
+            this.isplaying = false;
+            this.playMusic();
             // console.log('index::', this.nowsong.findIndex((item)=>item.id===id));
           }
         }
@@ -155,6 +212,7 @@ export const songStore = defineStore("song", {
             id: 0,
             url: "", //歌曲地址
             songname: "", //歌曲名字
+            picurl: "",
           },
         ];
         this.index = 0; //同理，要修改index

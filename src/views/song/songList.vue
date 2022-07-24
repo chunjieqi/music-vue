@@ -19,8 +19,8 @@ import { songStore } from '@/store/song'
 const store = songStore()
 // import store from '@/store'
 function select(val) {
-    store.playsong(val.id, val.name)
-    // console.log(1);
+    store.playsong(val.id, val.name,val.al.picUrl)
+    console.log(val);
     // 这里要用计时器，因为添加时因为是异步的，要比播放函数慢导致顺序乱了，会出bug，用计时器是个很棒的办法
     setTimeout(function () {
         store.playMusic()
