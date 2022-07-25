@@ -1,15 +1,15 @@
 <template>
     <div class="songListShow">
-        <div>播放列表</div>
-        <div v-if="store.nowsong[0].url === ''">还没有选择歌曲嗷</div>
+        <div class="tite">播放列表</div>
+        <div v-if="store.nowsong[0].url === ''" class="wugequ">还没有选择歌曲嗷</div>
         <div v-else>
             <div class="box" v-for="(item, index) in store.nowsong" :key="index" @click="bofang(index)">
                 <span class="suoyin">{{ index + 1 }}</span>
-                <span>{{ item.songname }}</span>
+                <span class="namee">{{ item.songname }}</span>
                 <div class="ststebox">
-                    <van-icon v-if="store.index === index" name="pause-circle-o" />
-                    <van-icon v-else name="play-circle-o" />
-                    <van-icon name="clear" @click.stop="deletesong(index)" />
+                    <van-icon v-if="store.index === index" name="pause-circle-o" class="bofang redd" />
+                    <van-icon v-else name="play-circle-o" class="bofang" />
+                    <van-icon name="close" @click.stop="deletesong(index)" />
                 </div>
 
             </div>
@@ -33,23 +33,49 @@ function deletesong(val){
 }
 </script>
 <style lang='scss' scoped>
+.tite{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+
+}
+.wugequ{
+    margin-left: 20px;
+    font-size: 120%;
+    color: red;
+}
 .box {
     width: 100%;
     position: relative;
     height: 50px;
-    background-color: aqua;
+    // background-color: aqua;
     display: flex;
     justify-content: left;
     align-items: center;
     margin-bottom: 20px;
 
     .suoyin {
-        margin-right: 30px;
-        margin-left: 10px;
+        margin-right: 20px;
+        margin-left: 20px;
     }
     .ststebox{
         position: absolute;
-        right: 20px;
+        right: 40px;
+        font-size: 120%;
+        .bofang{
+            position: absolute;
+            right: 50px;
+            // color:red
+        }
     }
+}
+.redd{
+    color: red;
+}
+.namee{
+    width: 180px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis
 }
 </style>

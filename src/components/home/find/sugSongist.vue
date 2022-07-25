@@ -9,7 +9,7 @@
             </div>
             <div class="songList">
                 <van-swipe :loop="false" :width="160" class="fff" :show-indicators="false">
-                    <van-swipe-item v-for="(item, index) in suglist" :key="index" class="myswipe" @click="goList(item.id)">
+                    <van-swipe-item v-for="(item, index) in suglist" :key="index" class="myswipe" @click="goList(item)">
                         <img :src="item.picUrl" alt="" class="imgg">
                         <div class="tit">{{ item.name }}</div>
                         <div class="count">
@@ -51,13 +51,13 @@ function getsuglist() {
 }
 getsuglist()
 // 获取并去往歌单页面
-function goList(id){
+function goList(item){
     //根据id获取歌单数组
-    getSonglist(id).then(res=>{
-        // console.log(res);
+    getSonglist(item.id).then(res=>{
+        console.log(item);
         // store.commit('song/getSonglist',res.songs)
         // store.songList=res.songs
-        
+        store.sugsonglistmessge=item //将歌单详情传入store
         store.addlist(res.songs)  //改变歌单列表的值
         router.push('/songlist')   //跳转到歌单页面
         // console.log(store.songList);
@@ -118,7 +118,7 @@ function goList(id){
     position: absolute;
     top: 5px;
     right: 20px;
-    background-color: rgb(178, 186, 186);
+    background-color: rgba(0, 0, 0,0.5);
     border-radius: 25px;
     width: auto;
     padding: 2px 5px;

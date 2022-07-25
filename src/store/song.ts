@@ -5,6 +5,7 @@ export const songStore = defineStore("song", {
     return {
       //这里写数据 实例：
       audios: new Audio(), //播放器组件
+      sugsonglistmessge:Object,
       muted: false,
       widthh: `0%`, //控制播放器进度条的宽度
       currenttime: 0, //当前时间

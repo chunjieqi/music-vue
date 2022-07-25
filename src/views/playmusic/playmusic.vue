@@ -329,7 +329,6 @@ function mute() {
     height: 100%;
     background-size: cover;
     background-color: #161824;
-
     position: relative;
     z-index: 1;
     color: rgb(255, 255, 255);
