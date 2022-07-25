@@ -5,7 +5,7 @@ export const songStore = defineStore("song", {
     return {
       //这里写数据 实例：
       audios: new Audio(), //播放器组件
-      sugsonglistmessge:Object,
+      sugsonglistmessge: Object,
       muted: false,
       widthh: `0%`, //控制播放器进度条的宽度
       currenttime: 0, //当前时间
@@ -92,60 +92,69 @@ export const songStore = defineStore("song", {
     },
     //根据传入的id获取歌单中的歌曲，并添加进nowsong中
     playsong(id: number, name: string, pic: string) {
-      getSong(id).then((res) => {
-        //这段代码还有待改进
-        console.log(res);
-        if (this.nowsong[0].url === "") {
-          this.nowsong = [
-            { id: id, url: res.data[0].url, songname: name, picurl: pic },
-          ]; //赋值给播放列表
-          this.index = this.nowsong.length - 1; //让当前播放歌曲为列表的最后一项
-          this.audios.src = this.nowsong[this.index].url; //为audio赋值
-          this.audios.autoplay = false; //关闭自动播放
-          this.audios.loop = false; //关闭自动循环
-          this.isplaying = false;
-          console.log(this.nowsong);
-        } else {
-          //过滤掉重复的歌，重复的歌不添加但是切换到播放这首歌
-          if (this.nowsong.filter((s) => s.id == id).length <= 0) {
-            this.nowsong.push({
-              id: id,
-              url: res.data[0].url,
-              songname: name,
-              picurl: pic,
-            });
-            this.index = this.nowsong.length - 1;
+      getSong(id)
+        .then((res) => {
+          //这段代码还有待改进
+          console.log(res);
+          if (this.nowsong[0].url === "") {
+            this.nowsong = [
+              { id: id, url: res.data[0].url, songname: name, picurl: pic },
+            ]; //赋值给播放列表
+            this.index = this.nowsong.length - 1; //让当前播放歌曲为列表的最后一项
             this.audios.src = this.nowsong[this.index].url; //为audio赋值
             this.audios.autoplay = false; //关闭自动播放
             this.audios.loop = false; //关闭自动循环
             this.isplaying = false;
             console.log(this.nowsong);
-            console.log("完成添加");
-          } else {
-            const thisval = this.nowsong.findIndex((item) => item.id === id); //获取这首歌对应的索引
-            this.index = thisval; //播放歌曲操作
-            this.audios.src = this.nowsong[this.index].url;
-            this.isplaying = false;
             this.playMusic();
-            // console.log('index::', this.nowsong.findIndex((item)=>item.id===id));
+          } else {
+            //过滤掉重复的歌，重复的歌不添加但是切换到播放这首歌
+            if (this.nowsong.filter((s) => s.id == id).length <= 0) {
+              this.nowsong.push({
+                id: id,
+                url: res.data[0].url,
+                songname: name,
+                picurl: pic,
+              });
+              this.index = this.nowsong.length - 1;
+              this.audios.src = this.nowsong[this.index].url; //为audio赋值
+              this.audios.autoplay = false; //关闭自动播放
+              this.audios.loop = false; //关闭自动循环
+              this.isplaying = false;
+              console.log(this.nowsong);
+              console.log("完成添加");
+              this.playMusic();
+            } else {
+              const thisval = this.nowsong.findIndex((item) => item.id === id); //获取这首歌对应的索引
+              this.index = thisval; //播放歌曲操作
+              this.audios.src = this.nowsong[this.index].url;
+              this.isplaying = false;
+              this.playMusic();
+              // console.log('index::', this.nowsong.findIndex((item)=>item.id===id));
+            }
           }
-        }
-      });
+        })
+        .catch((err) => {
+          console.log("网络异常");
+        });
     },
     // 对audio进行控制
     //播放音乐
     playMusic() {
       // console.log("进入播放");
-
-      if (this.isplaying === true) {
-        console.log("暂停", this.isplaying);
-
-        this.audios.pause();
-        this.isplaying = false;
+      if (this.nowsong[this.index].url === '') {
+        console.log("播放列表无歌曲");
       } else {
-        this.audios.play(); //开始播放
-        console.log("播放", this.isplaying);
-        this.isplaying = true;
+        if (this.isplaying === true) {
+          console.log("暂停", this.isplaying);
+
+          this.audios.pause();
+          this.isplaying = false;
+        } else {
+          this.audios.play(); //开始播放
+          console.log("播放", this.isplaying);
+          this.isplaying = true;
+        }
       }
     },
     //切换上一首

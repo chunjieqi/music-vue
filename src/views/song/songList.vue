@@ -1,5 +1,8 @@
 <template>
+
     <div class="songList">
+        <!-- 将顶部改为定位，用div顶替原来的位置 -->
+        <div class="dingtiboxx"></div>
         <!-- {{store.state.song.songlist}} -->
         <div class="top" :style="{ background: `url(${store.sugsonglistmessge.picUrl})` }">
             <div class="boxxx">
@@ -42,12 +45,10 @@ function select(val) {
     store.playsong(val.id, val.name, val.al.picUrl)
     console.log(val);
     // 这里要用计时器，因为添加时因为是异步的，要比播放函数慢导致顺序乱了，会出bug，用计时器是个很棒的办法
-    setTimeout(function () {
-        store.playMusic()
-        console.log(2);
-    }, 1000)
-
-
+    // setTimeout(function () {
+    //     store.playMusic()
+    //     console.log(2);
+    // }, 1000)
 }
 function backed() {
     router.push('/home/find')
@@ -111,6 +112,15 @@ function backed() {
     z-index: 3;
 }
 
+.dingtiboxx {
+    width: 100%;
+    height: 30%;
+    display: flex;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: -2;
+}
+
 .top {
     width: 100%;
     height: 30%;
@@ -120,7 +130,9 @@ function backed() {
     background-color: #161824;
     color: rgb(255, 255, 255);
     margin-bottom: 20px;
-    position: relative;
+    position: fixed;
+    left: 0;
+    top: 0;
     z-index: 1;
 
     .box {

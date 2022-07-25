@@ -19,6 +19,8 @@ service.interceptors.response.use(
         let data=res.data
         return data
     },(error)=>{
+        // console.log(error);
+        
         return Promise.reject(error);
     }
 );

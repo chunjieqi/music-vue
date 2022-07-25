@@ -24,13 +24,13 @@
 
 <script setup>
 import { defineComponent, reactive, toRefs, ref } from 'vue'
-import {getSuglist,getSonglist} from '@/utils/api/api'
+import { getSuglist, getSonglist } from '@/utils/api/api'
 // import store from '@/store';
 //引入pinia store
-import {songStore} from '@/store/song'
+import { songStore } from '@/store/song'
 import router from '@/router'
 //创建store实例
-const store=songStore()
+const store = songStore()
 // console.log(store);
 let suglist = ref([])
 //获取推荐歌单 
@@ -47,23 +47,25 @@ function getsuglist() {
                 item.playCount = parseInt(item.playCount / 10000) + '万'
             }
         });
+    }).catch(err => {
+        console.log('网络异常');
     })
 }
 getsuglist()
 // 获取并去往歌单页面
-function goList(item){
+function goList(item) {
     //根据id获取歌单数组
-    getSonglist(item.id).then(res=>{
+    getSonglist(item.id).then(res => {
         console.log(item);
         // store.commit('song/getSonglist',res.songs)
         // store.songList=res.songs
-        store.sugsonglistmessge=item //将歌单详情传入store
+        store.sugsonglistmessge = item //将歌单详情传入store
         store.addlist(res.songs)  //改变歌单列表的值
         router.push('/songlist')   //跳转到歌单页面
         // console.log(store.songList);
         // store.playsong(store.songList[0].id,store.songList[0].name)                            //按照歌单播放
     })
-    
+
     // store.commit('song/getSonglist(id)')
 }
 </script>
@@ -111,14 +113,15 @@ function goList(item){
 }
 
 
-.myswipe{
+.myswipe {
     position: relative;
 }
+
 .count {
     position: absolute;
     top: 5px;
     right: 20px;
-    background-color: rgba(0, 0, 0,0.5);
+    background-color: rgba(0, 0, 0, 0.5);
     border-radius: 25px;
     width: auto;
     padding: 2px 5px;
