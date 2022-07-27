@@ -5,6 +5,7 @@ export const userstore =defineStore("user",{
         return {
             user:gettoken('token'),
             uid:window.localStorage.getItem('uid'),
+            showpopup:false
         }
     },
     getters:{

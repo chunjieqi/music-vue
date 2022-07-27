@@ -81,3 +81,10 @@ export  function getUserlist(uid:number){
     method: "GET",
   })
 }
+//获取用户信息，歌单收藏等
+export  function getUsermess(){
+  return service({
+    url:`/user/subcount`,
+    method: "GET",
+  })
+}

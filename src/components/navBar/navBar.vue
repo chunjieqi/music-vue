@@ -5,17 +5,20 @@
         <span class="icon-mic iconstyrig" @click="songright"></span>
     </div>
     <!-- 菜单按钮弹出层 -->
-    <van-popup v-model:show="showpopup" position="left" :style="{ width:'80%',height:'100%' }" >我是菜单弹出层</van-popup>
+    <van-popup v-model:show="ustore.showpopup" position="left" :style="{ width:'80%',height:'100%' }" ><menuPopup></menuPopup></van-popup>
 </template>
 
 <script setup>
 import router from '@/router'
 import { defineComponent, reactive, toRefs, ref } from 'vue'
+import menuPopup from '@/components/home/menuPopup/menuPopup'
+import {userstore} from "@/store/userLogin";
+const ustore=userstore()
 let searchValue=ref('')
-let showpopup=ref(false)
+// let showpopup=ref(false)
 //点击左侧菜单按钮
 function leftMenu(){
-    showpopup.value=true
+    ustore.showpopup=true
     
 }
 //点击右侧麦克风按钮
