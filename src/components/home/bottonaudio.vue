@@ -57,11 +57,11 @@ onMounted(() => {
     watchEffect(() => {
         console.log('监听到了');
         if ( store.nowsong[store.index].url != '') {
-            console.log("上升");
+            // console.log("上升");
             // console.log(audioo.value);
             audioo.value.classList.add('shangsheng');
             // idopenaudio = false
-            console.log(audioo.value.classList);
+            // console.log(audioo.value.classList);
             return
         }
         if ( store.nowsong[store.index].url === '') {

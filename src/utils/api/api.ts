@@ -51,3 +51,12 @@ export function getSong(id: number) {
     },
   });
 }
+
+//登录
+export function onlogin(phone:string,password:string) {
+  return service({
+    url: `/login?email=${phone}@163.com&password=${password}`,
+    method: "get",
+  });
+}
+

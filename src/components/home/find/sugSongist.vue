@@ -56,7 +56,7 @@ getsuglist()
 function goList(item) {
     //根据id获取歌单数组
     getSonglist(item.id).then(res => {
-        console.log(item);
+        // console.log(item);
         // store.commit('song/getSonglist',res.songs)
         // store.songList=res.songs
         store.sugsonglistmessge = item //将歌单详情传入store

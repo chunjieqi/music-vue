@@ -21,7 +21,7 @@ import { getFindIconlist } from '@/utils/api/api'
 let iconList = ref([])
 function getFindIcon() {
     getFindIconlist().then(res => {
-        console.log(res);
+        // console.log(res);
         iconList.value = res.data
     })
 }

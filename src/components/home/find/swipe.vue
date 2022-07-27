@@ -14,13 +14,13 @@ import { getSwipelist } from "@/utils/api/api"
 let bandata = ref([])
 function getBanner() {
     getSwipelist().then(res => {
-        console.log(res);
+        // console.log(res);
         bandata.value = res.banners
     })
 }
 getBanner()
 function goList(item){
-    console.log(item);
+    // console.log(item);
 }
 </script>
 <style lang='scss' scoped>
