@@ -6,7 +6,6 @@
       <BottomAudio></BottomAudio>
       <footBar></footBar>
    </div>
-
 </template>
 <script setup>
 import { defineComponent, reactive, toRefs, watch,ref ,onMounted} from 'vue'

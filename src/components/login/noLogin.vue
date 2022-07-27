@@ -32,13 +32,17 @@ import {onlogin} from '@/utils/api/api'
 const username = ref('');
 const password = ref('');
 const onSubmit = (values) => {
-    console.log(username.value);
-    console.log(password.value);
+    // console.log(username.value);
+    // console.log(password.value);
     onlogin(username.value,password.value).then(res=>{
         console.log(res);
         if(res.code===200){
             console.log("登陆成功");
             ustore.setToken(res.token)
+          //将用户id也进行本地存储
+            window.localStorage.setItem('uid',res.account.id)
+          //将用户id进行store储存
+          ustore.uid=window.localStorage.getItem('uid')
         }
     })
 };

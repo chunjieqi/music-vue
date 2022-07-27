@@ -8,7 +8,6 @@
    <button @click="fian">+</button> -->
    <!-- <audio src=""></audio> -->
 </template>
-
 <script setup>
 import { defineComponent, reactive, toRefs } from 'vue'
 import Swipe from '@/components/home/find/swipe.vue'

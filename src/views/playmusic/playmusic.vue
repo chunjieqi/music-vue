@@ -90,7 +90,7 @@ function chang() {
     store.audios.volume = thisf.value
 }
 function back() {
-    router.push('/home')
+    router.back()
 }
 // 播放
 function nowPlay() {

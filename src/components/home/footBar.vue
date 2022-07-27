@@ -4,7 +4,7 @@
         <van-tabbar route  active-color="#ee0a24">
             <van-tabbar-item replace to="/home/find" icon="music-o">发现</van-tabbar-item>
             <van-tabbar-item replace to="/home/boke" icon="fire-o">播客</van-tabbar-item>
-            <van-tabbar-item replace to="/home/my" icon="user-o">我的</van-tabbar-item>
+            <van-tabbar-item replace to="/home/my" icon="user-o">{{store.user?'我的':'未登录'}}</van-tabbar-item>
             <van-tabbar-item replace to="/home/care" icon="friends-o">关注</van-tabbar-item>
             <van-tabbar-item replace to="/home/cloudVil">
                 云村
@@ -18,6 +18,8 @@
 </template>
 <script setup>
 import { defineComponent, reactive, toRefs ,ref} from 'vue'
+import {userstore} from "@/store/userLogin";
+const store=userstore()
 
 </script>
 <style lang='scss' scoped>

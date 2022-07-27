@@ -60,3 +60,24 @@ export function onlogin(phone:string,password:string) {
   });
 }
 
+//获取用户详情
+export  function getUserdet(uid:number){
+  return service({
+    url:`/user/detail?uid=${uid}`,
+    method: "get",
+  })
+}
+
+export  function getUser(uid:number){
+  return service({
+    url:`/user/account`,
+    method: "GET",
+  })
+}
+//获取用户歌单
+export  function getUserlist(uid:number){
+  return service({
+    url:`/user/playlist?uid=${uid}`,
+    method: "GET",
+  })
+}

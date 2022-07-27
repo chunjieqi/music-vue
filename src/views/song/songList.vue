@@ -51,7 +51,7 @@ function select(val) {
     // }, 1000)
 }
 function backed() {
-    router.push('/home/find')
+    router.back()
 }
 </script>
 <style lang='scss' scoped>
@@ -163,7 +163,7 @@ function backed() {
 
         .count {
             position: absolute;
-            left: 60px;
+            right: 240px;
             top: 5px;
             background-color: rgba(0, 0, 0, 0.5);
             border-radius: 25px;
