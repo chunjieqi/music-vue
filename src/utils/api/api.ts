@@ -88,3 +88,12 @@ export  function getUsermess(){
     method: "GET",
   })
 }
+
+//获取新歌速递
+//获取用户信息，歌单收藏等
+export  function getNewsongs(num:number){
+  return service({
+    url:`/top/song?type=${num}`,
+    method: "GET",
+  })
+}

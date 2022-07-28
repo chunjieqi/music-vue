@@ -1,8 +1,10 @@
 <template>
-   <Swipe class="swipe"></Swipe>
-   <cicleIcon class="cicleIcon"></cicleIcon>
+    <Swipe class="swipe"></Swipe>
+    <cicleIcon class="cicleIcon"></cicleIcon>
    <van-divider />
-   <sugSongist></sugSongist>
+   <sugSongist class="sugSong"></sugSongist>
+  <newSongExpress class="newSongExpress"></newSongExpress>
+  <div class="footer">到底了~</div>
    <!-- 实验： -->
    <!-- {{store.state.song.count}}
    <button @click="fian">+</button> -->
@@ -14,6 +16,7 @@ import Swipe from '@/components/home/find/swipe.vue'
 import cicleIcon from '@/components/home/find/cicleIcon.vue'
 import sugSongist from '@/components/home/find/sugSongist.vue'
 import router from '@/router'
+import newSongExpress from "@/components/home/find/newSongExpress"
 // import store from '@/store'
 // function fian(){
 //    console.log(store.state.song.count)
@@ -31,5 +34,13 @@ import router from '@/router'
 
 .cicleIcon {
    margin-top: 10px;
+}
+.sugSong{
+  margin-bottom: 30px;
+}
+.footer{
+  width: 100%;
+  text-align: center;
+  margin-top: 20px;
 }
 </style>

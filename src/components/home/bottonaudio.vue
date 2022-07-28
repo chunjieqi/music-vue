@@ -1,5 +1,5 @@
 <template>
-    <div class="bottonaudio" ref="audioo" @click="tiaozhuan">
+    <div class="bottonaudio" :class="nihaoo" ref="audioo" @click="tiaozhuan">
         <div class="piccwai">
             <div v-if="store.isplaying === true" class="piccnei playimg">
                 <img class="imgggg" :src="store.nowsong[store.index].picurl" alt="">
@@ -53,19 +53,25 @@ function tiaozhuan() {
 }
 // let idopenaudio=true
 let audioo = ref(null)
+let nihaoo=ref('')
 onMounted(() => {
     watchEffect(() => {
         console.log('监听到了');
         if ( store.nowsong[store.index].url != '') {
-            // console.log("上升");
+            console.log('上升')
+          // console.log("上升");
             // console.log(audioo.value);
-            audioo.value.classList.add('shangsheng');
+            // audioo.value.classList.add('shangsheng');
+          nihaoo.value='shangsheng'
+            // audioo.value.style.bottom=50+'px'
             // idopenaudio = false
             // console.log(audioo.value.classList);
             return
         }
         if ( store.nowsong[store.index].url === '') {
-            audioo.value.classList.add('xiajiang');
+            // audioo.value.classList.add('xiajiang');
+          nihaoo.value='xiajiang'
+          // audioo.value.style.bottom=-50+'px'
             // idopenaudio = true
             return
         }
