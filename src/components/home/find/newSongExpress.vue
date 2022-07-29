@@ -45,7 +45,7 @@ let arrresone=ref([])
 let arrrestwo=ref([])
 let arrresthree=ref([])
 let arrresfore=ref([])
-//淑新韩淑
+//刷新切换歌单音乐
 function replayy(){
   getNew()
 }
@@ -57,7 +57,7 @@ function getNew(){
   callname.value=nanan[xx]
   // console.log(xx)
   getNewsongs(xarr[xx]).then(res=>{
-    console.log(res)
+    // console.log(res)
     // arrres.value=res.data.slice(0,12)  //取前12首歌,并拆分
     // console.log(arrres.value)
     arrresone.value=res.data.slice(0,3)
@@ -65,7 +65,7 @@ function getNew(){
     arrresthree.value=res.data.slice(6,9)
     arrresfore.value=res.data.slice(9,12)
     arrres.value=[arrresone.value,arrrestwo.value,arrresthree.value,arrresfore.value]
-    console.log(arrres.value)
+    // console.log(arrres.value)
   })
 }
 //播放mv，待开发
@@ -74,7 +74,7 @@ function playmv(item2){
 }
 //播放歌曲
 function playsong(item2){
-  console.log(item2)
+  // console.log(item2)
   sStore.playsong(item2.id,item2.name,item2.album.picUrl)
 }
 onMounted(()=>{

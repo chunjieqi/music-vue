@@ -97,3 +97,11 @@ export  function getNewsongs(num:number){
     method: "GET",
   })
 }
+
+//获取排行榜
+export  function getbokebang(num:number){
+  return service({
+    url:`/toplist`,
+    method: "GET",
+  })
+}
