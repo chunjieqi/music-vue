@@ -9,6 +9,7 @@ import Song from "@/views/song/song.vue";
 import Playmusic from "@/views/playmusic/playmusic.vue";
 import songList from "@/views/song/songList.vue";
 import bangSonglist from "@/views/song/bangSonglist.vue"
+import Vediolay from "@/views/vedioplay.vue"
 const routes: Array<RouteRecordRaw> = [
   { path: "/", redirect: "/home" },
   {
@@ -27,6 +28,7 @@ const routes: Array<RouteRecordRaw> = [
   {path:'/playmusic',component:Playmusic},
   {path:'/songlist',component:songList},
   {path:'/bangSonglist',component:bangSonglist},
+  {path:'/vedioplay',component:Vediolay},
 ];
 
 const router = createRouter({

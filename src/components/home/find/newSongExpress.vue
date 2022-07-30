@@ -14,7 +14,7 @@
           </span>
         </div>
         <div class="contan">
-          <van-swipe :show-indicators="false">
+          <van-swipe :show-indicators="false" autoplay="3000">
             <van-swipe-item  v-for="(item,index) in arrres" :key="index">
               <div class="songs" @click="playsong(item2)" v-for="(item2,index) in item" :key="index">
                 <van-image

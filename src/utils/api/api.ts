@@ -105,3 +105,33 @@ export  function getbokebang(num:number){
     method: "GET",
   })
 }
+
+//获取视频分类
+export  function getVedio(){
+  return service({
+    url:`/video/category/list`,
+    method: "GET",
+  })
+}
+//获取分类下的视频
+export  function getVedioList(num:number){
+  return service({
+    url:`/video/group?id=${num}`,
+    method: "GET",
+  })
+}
+//获取视频url
+//获取分类下的视频
+export  function getVediourl(num:string){
+  return service({
+    url:`/video/url?id=${num}`,
+    method: "GET",
+  })
+}
+//获取mv
+export  function getMvurl(num:number){
+  return service({
+    url:`/mv/url?id=${num}`,
+    method: "GET",
+  })
+}
